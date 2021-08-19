@@ -13,5 +13,6 @@ class Customer(models.Model):
     city = models.CharField(max_length=20)
     district = models.CharField(max_length=20)
 
-def __str__(self):
-    return f"{self.name} {self.surname}"
+    def __str__(self):
+
+        return f"{self.name} {self.surname}"
