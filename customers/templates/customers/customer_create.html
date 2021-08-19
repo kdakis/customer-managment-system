@@ -9,5 +9,9 @@
     <a href="/customers">Go back Customer list</a>
     <hr />
     <h1>Create a new customer</h1>
-    {{ form.as_p }}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
 </html>
