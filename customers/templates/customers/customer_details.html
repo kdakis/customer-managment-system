@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="wievport" content="My Page Description">
+    <title>My Page Title</title>
+    <style>
+        .customer {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 6px;
+            padding-right: 6px;
+            margin-top: 10px;
+            background-color: #f6f6f6; 
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <a href="/customers">Go back Customer list</a>
+    <hr />
+    <h1>Customer detail for {{ customer.name }}</h1>
+    <p> {{ customer.ssn }} </p>
+</html>

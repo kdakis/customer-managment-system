@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="wievport" content="My Page Description">
+    <title>My Page Title</title>
+    <style>
+        .customer {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 6px;
+            padding-right: 6px;
+            margin-top: 10px;
+            background-color: #f6f6f6; 
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Customer List</h1>
+    {% for customer in customer %}
+        <div class=customer> 
+            <a href="/customers/{{ customer.pk }}">{{customer}}</a> 
+        </div>
+    {% endfor %}</body>
+</html>
