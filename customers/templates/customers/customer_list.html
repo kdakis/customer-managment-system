@@ -18,12 +18,12 @@
     </style>
 </head>
 <body>
-    <a href="/customers/create">Create new customer</a>
+    <a href="{% url 'customers:customer-create' %}">Create new customer</a>
     <hr />
     <h1>Customer List</h1>
     {% for customer in customer %}
         <div class=customer> 
-            <a href="/customers/{{ customer.pk }}">{{customer}}</a> 
+            <a href="{% url 'customers:customer-detail' customer.pk %}">{{customer}}</a> 
         </div>
     {% endfor %}</body>
 </html>

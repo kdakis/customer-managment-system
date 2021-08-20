@@ -45,3 +45,9 @@ def customer_update(request, pk):
         "customer" : customer
     }
     return render(request, "customers/customer_update.html" , context)
+
+def customer_delete(request, pk):
+    customer = Customer.objects.get(id=pk)
+    customer.delete()
+    return redirect("/customers")
+
