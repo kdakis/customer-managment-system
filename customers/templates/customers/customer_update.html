@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="wievport" content="My Page Description">
+    <title>My Page Title</title>
+</head>
+<body>
+    <a href="/customers">Go back Customer list</a>
+    <hr />
+    <h1>Update customer</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</html>

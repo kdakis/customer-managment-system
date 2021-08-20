@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.http import HttpResponse 
 from .models import Customer
-from .forms import CustomerForm
+from .forms import CustomerForm , CustomerModelForm
 
 def customer_list(request):
 
@@ -21,28 +21,27 @@ def customer_detail(request, pk):
     return render(request, "customers/customer_details.html" , context)
 
 def customer_create(request):
-    form = CustomerForm()
+    form = CustomerModelForm()
     if request.method == "POST":
-        form = CustomerForm(request.POST)
+        form = CustomerModelForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data ['name']
-            surname = form.cleaned_data ['surname']
-            ssn = form.cleaned_data ['ssn']
-            phone = form.cleaned_data ['phone']
-            city = form.cleaned_data ['city']
-            district = form.cleaned_data ['district']
-            
-            Customer.objects.create(
-                name = name,
-                surname = surname,
-                ssn = ssn,
-                phone = phone,
-                city = city,
-                district = district
-            )
-
-
+            form.save()
+            return redirect("/customers")
     context = {
         "form" : form
     }
     return render(request, "customers/customer_create.html" , context)
+
+def customer_update(request, pk):
+    customer = Customer.objects.get(id=pk)
+    form = CustomerModelForm(instance=customer)
+    if request.method == "POST":
+        form = CustomerModelForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect("/customers")
+    context ={
+        "form" : form,
+        "customer" : customer
+    }
+    return render(request, "customers/customer_update.html" , context)
