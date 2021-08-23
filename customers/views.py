@@ -1,5 +1,8 @@
+from django.db.models import *
+from django.core.paginator import *
+from django.http import request
 from django.shortcuts import redirect, render, reverse
-from django.contrib.auth.forms import UserCreationForm 
+from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.views.generic import *
 from .models import Customer
 from .forms import CustomerForm , CustomerModelForm, CustomUserCreationForm
@@ -18,10 +21,29 @@ class LandingPageView(TemplateView):
 def landing_page(request):
     return render(request, "landing_page.html")
 
-class CustomerListView(ListView):
-    template_name = "customers/customer_list.html"
-    queryset = Customer.objects.all()
+class CustomerListView(LoginRequiredMixin, ListView):
     context_object_name = "customer"
+
+    def get(self,request):
+        queryset = Customer.objects.all()
+        search = request.GET.get('word','')
+
+        if search:
+            queryset = queryset.filter(
+                Q(ssn__icontains=search)|
+                Q(name__icontains=search)|
+                Q(surname__icontains=search)|
+                Q(phone__icontains=search)|
+                Q(city__icontains=search)|
+                Q(district__icontains=search)
+            )
+        
+        context = {
+        'customer': queryset, 
+        'word': search
+        }
+        return render(request, "customers/customer_list.html", context)
+
 
 def customer_list(request):
     customer = Customer.objects.all()
@@ -30,7 +52,7 @@ def customer_list(request):
     }
     return render(request, "customers/customer_list.html" , context)
 
-class CustomerDetailView(DetailView):
+class CustomerDetailView(LoginRequiredMixin, DetailView):
     template_name = "customers/customer_details.html"
     queryset = Customer.objects.all()
     context_object_name = "customer"
@@ -43,7 +65,7 @@ def customer_detail(request, pk):
     }
     return render(request, "customers/customer_details.html" , context)
 
-class CustomerCreteView(CreateView):
+class CustomerCreteView(LoginRequiredMixin, CreateView):
     template_name = "customers/customer_create.html"
     form_class = CustomerModelForm
 
@@ -63,7 +85,7 @@ def customer_create(request):
     }
     return render(request, "customers/customer_create.html" , context)
 
-class CustomerUpdateView(UpdateView):
+class CustomerUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "customers/customer_update.html"
     queryset = Customer.objects.all()
     form_class = CustomerModelForm
@@ -86,7 +108,7 @@ def customer_update(request, pk):
     return render(request, "customers/customer_update.html" , context)
 
 
-class CustomerDeleteView(DeleteView):
+class CustomerDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "customers/customer_delete.html"
     queryset = Customer.objects.all()
 
