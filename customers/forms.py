@@ -35,15 +35,4 @@ class CustomerModelForm(forms.ModelForm):
                 if (len(phone) != 10 or len(ssn) != 11):
                     raise forms.ValidationError("Please check your information!!")
             else:
-                return None
-
-
-class CustomerForm(forms.Form):
-
-    name = forms.CharField()
-    surname = forms.CharField()
-    ssn = forms.CharField()
-    phone = forms.CharField()
-    city = forms.CharField()
-    district = forms.CharField()
-    
+                return None   

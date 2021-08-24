@@ -130,3 +130,4 @@ AUTH_USER_MODEL = "customers.User"
 LOGIN_REDIRECT_URL = "/customers"
 
 LOGIN_URL = "/login"
+
