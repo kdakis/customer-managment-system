@@ -25,14 +25,16 @@ class CustomerModelForm(forms.ModelForm):
             'district'
         )
 
-        def clean(self):
-            cleaned_data = super().clean()
-            ssn = cleaned_data.get("ssn")
-            phone = cleaned_data.get("phone")
-            if phone and ssn:
-                if (len(phone) != 10 or len(ssn) != 11):
-                    raise forms.ValidationError(
-                        "Please check your information!!"
-                        )
+    def clean(self):
+        cleaned_data = super().clean()
+        ssn = cleaned_data.get("ssn")
+        phone = cleaned_data.get("phone")
+        if phone and ssn:
+            if (len(phone) != 10 or len(ssn) != 11):
+                raise forms.ValidationError(
+                    "Please check your information!!"
+                    )
             else:
                 return cleaned_data
+        else:
+            return None
