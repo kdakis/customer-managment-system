@@ -31,9 +31,14 @@ class CustomerModelForm(forms.ModelForm):
         phone = cleaned_data.get("phone")
         if phone and ssn:
             if (len(phone) != 10 or len(ssn) != 11):
-                raise forms.ValidationError(
-                    "Please check your information!!"
-                    )
+                if (len(phone) != 10):
+                    raise forms.ValidationError(
+                        "Please check your phone number!!"
+                        )
+                if (len(ssn) != 11):
+                    raise forms.ValidationError(
+                        "Please check your ssn!!"
+                        )
             else:
                 return cleaned_data
         else:

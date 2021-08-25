@@ -24,6 +24,13 @@ class SignUpView(CreateView):
         return reverse("login")
 
 
+class LoginView(TemplateView):
+    template_name = "registration/login.html"
+
+    def get_success_url(self):
+        return reverse("customers:customer-list")
+
+
 class LandingPageView(TemplateView):
     template_name = "landing_page.html"
 
@@ -32,7 +39,7 @@ class CustomerListView(LoginRequiredMixin, ListView):
     context_object_name = "customer"
 
     def get(self, request):
-        search = request.GET.get('s','')
+        search = request.GET.get('s', '')
         paginate_by = request.GET.get('p', DEFAULT_PAGINATE)
         queryset = Customer.objects.all()
 
@@ -59,7 +66,7 @@ class CustomerListView(LoginRequiredMixin, ListView):
             'p': paginate_by
         }
         return render(request, "customers/customer_list.html", context)
-    
+
 
 class CustomerDetailView(LoginRequiredMixin, DetailView):
     template_name = "customers/customer_details.html"

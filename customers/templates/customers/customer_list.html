@@ -11,7 +11,7 @@
                     <div class="flex flex-wrap m-3">
                         <form method="GET">
                             <div class="pagination-box">
-                                <input type="int" name="p" placeholder="paginate by {{ p }}">
+                                <input type="number" name="p" placeholder="paginate by {{ p }}" pattern="d/" min="1">
                             </div>
                         </form>
                         <form method="GET">
