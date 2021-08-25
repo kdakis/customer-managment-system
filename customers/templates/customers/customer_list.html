@@ -13,7 +13,7 @@
                             <div class="pagination-box">
                                 <input type="int" name="p" placeholder="paginate by {{ p }}">
                             </div>
-                        </form>  
+                        </form>
                         <form method="GET">
                             <div class="mx-20 search-box">
                                 <input type="text" name="s" placeholder="Search...">
@@ -28,85 +28,96 @@
                 </div>
         <div class="flex flex-col w-full">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            ID
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Tc
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            First Name
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Last Name
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Phone
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            City
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            District
-                            </th>
-                            <th scope="col" class="relative px-6 py-3">
-                            <span class="sr-only">Edit</span>
-                            </th>
-                            <th scope="col" class="relative px-6 py-3">
-                            <span class="sr-only">Delete</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for customer in customer %}
-                            <tr class="bg-white">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    <a class="text-blue-500 hover:text-blue-800" href="{% url 'customers:customer-detail' customer.pk %}">{{ customer.pk }}</a>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ customer.ssn }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ customer.name }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ customer.surname }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ customer.phone }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ customer.city }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ customer.district }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="{% url 'customers:customer-update' customer.pk %}" class="text-indigo-600 hover:text-indigo-900">
-                                        Edit
-                                    </a>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="{% url 'customers:customer-delete' customer.pk %}" class="text-indigo-600 hover:text-indigo-900">
-                                        Delete
-                                    </a>
-                                </td>
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                ID
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Tc
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                First Name
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Last Name
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Phone
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                City
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                District
+                                </th>
+                                <th scope="col" class="relative px-6 py-3">
+                                <span class="sr-only">Edit</span>
+                                </th>
+                                <th scope="col" class="relative px-6 py-3">
+                                <span class="sr-only">Delete</span>
+                                </th>
                             </tr>
+                        </thead>
+                        <tbody>
+                            {% for customer in customer %}
+                                <tr class="bg-white">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        <a class="text-blue-500 hover:text-blue-800" href="{% url 'customers:customer-detail' customer.pk %}">{{ customer.pk }}</a>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ customer.ssn }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ customer.name }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ customer.surname }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ customer.phone }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ customer.city }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ customer.district }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="{% url 'customers:customer-update' customer.pk %}" class="text-indigo-600 hover:text-indigo-900">
+                                            Edit
+                                        </a>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="{% url 'customers:customer-delete' customer.pk %}" class="text-indigo-600 hover:text-indigo-900">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
 
-                        {% empty %}
+                            {% empty %}
 
-                        <p>There are currently no customers</p>
+                            <p>There are currently no customers</p>
 
-                        {% endfor %}
-                    </tbody>
-                </table>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="flex justify-end item-center pages">
+                        <form method="GET">
+                            {% if customer.has_previous %}
+                                <a class="btn btn-outline-info" href="?page={{ customer.previous_page_number }} & s={{ s }} & p={{ p }}"><<</a>
+                            {% endif %}
+                                <a class="btn btn-outline-info" href="#">{{ customer.number }}</a>
+                            {% if customer.has_next %}
+                                <a class="btn btn-outline-info" href="?page={{ customer.next_page_number }} & s={{ s }} & p={{ p }}">>></a></li>
+                            {% endif %}
+                        </form>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>

@@ -13,7 +13,7 @@ from django.views.generic import (
 from .models import Customer
 from .forms import CustomerModelForm, CustomUserCreationForm
 
-DEFAULT_PAGINATE = 20
+DEFAULT_PAGINATE = 25
 
 
 class SignUpView(CreateView):
@@ -32,7 +32,7 @@ class CustomerListView(LoginRequiredMixin, ListView):
     context_object_name = "customer"
 
     def get(self, request):
-        search = request.GET.get('s')
+        search = request.GET.get('s','')
         paginate_by = request.GET.get('p', DEFAULT_PAGINATE)
         queryset = Customer.objects.all()
 
@@ -59,7 +59,7 @@ class CustomerListView(LoginRequiredMixin, ListView):
             'p': paginate_by
         }
         return render(request, "customers/customer_list.html", context)
-
+    
 
 class CustomerDetailView(LoginRequiredMixin, DetailView):
     template_name = "customers/customer_details.html"
