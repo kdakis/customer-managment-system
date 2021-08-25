@@ -109,11 +109,11 @@
                     <div class="flex justify-end item-center pages">
                         <form method="GET">
                             {% if customer.has_previous %}
-                                <a class="btn btn-outline-info" href="?page={{ customer.previous_page_number }} & s={{ s }} & p={{ p }}"><<</a>
+                                <a class="btn btn-outline-info" href="?page={{ customer.previous_page_number }}&s={{ s }}&p={{ p }}"><<</a>
                             {% endif %}
                                 <a class="btn btn-outline-info" href="#">{{ customer.number }}</a>
                             {% if customer.has_next %}
-                                <a class="btn btn-outline-info" href="?page={{ customer.next_page_number }} & s={{ s }} & p={{ p }}">>></a></li>
+                                <a class="btn btn-outline-info" href="?page={{ customer.next_page_number }}&s={{ s }}&p={{ p }}">>></a></li>
                             {% endif %}
                         </form>
                     </div>
