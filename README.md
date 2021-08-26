@@ -1,4 +1,6 @@
-# customer-managment-system
+[![CircleCI](https://circleci.com/gh/kdakis/customer-managment-system/tree/main.svg?style=svg)](https://circleci.com/gh/kdakis/customer-managment-system/tree/main)
+
+# Customer Managment System
 
 This project help you manage your customers.
 
