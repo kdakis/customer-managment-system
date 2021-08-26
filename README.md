@@ -44,7 +44,11 @@ This project help you manage your customers.
   ```
   python manage.py migrate
   ```
-###### 5- Run server 
+###### 5- Load 10 customer information from fixtures to database (optional)
+  ```
+  python manage.py loaddata customer
+  ```
+###### 6- Run server 
   ```
   python manage.py runserver 
   ```
